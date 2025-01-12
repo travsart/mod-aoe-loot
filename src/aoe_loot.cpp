@@ -32,6 +32,9 @@ bool AOELootServer::CanPacketReceive(WorldSession* session, WorldPacket& packet)
     {
         Player* player = session->GetPlayer();
 
+        if (player->GetSession()->IsBot())
+            return false;
+
         if (!sConfigMgr->GetOption<bool>("AOELoot.Enable", true))
             return true;
 
